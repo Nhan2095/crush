@@ -7,7 +7,7 @@ const textConfig = {
   text6: "Thích ơi là thích <3",
   text7: "Lí do cậu thích tớ :vvvv",
   text8: "Gửi cho tớ <3",
-  text9: "Tớ thích cậu thì đâu cần lý do:>>",
+  text9: "Huy thích Thư thì đâu cần lý do:>>>",
   text10: "Tớ biết mà ^^ Yêu cậu's 3000",
   text11:
     "Tối nay tớ qua đón cậu đi chơi nhaa :v Còn giờ thì chờ gì nữa mà ko inbox cho tớ đi nàooo",
@@ -86,40 +86,33 @@ $(document).ready(function () {
   });
 
   // generate text in input
-function textGenerate() {
-    var text = textConfig.text9;  // nguyên câu "Tớ thích cậu thì đâu cần lý do:>>"
-    var words = text.split(" ");  // tách thành mảng các từ
-    var textVal = $("#txtReason").val() || "";
-    var currentWords = textVal.split(" ").filter(word => word !== "").length;
+  function textGenerate() {
+    if (wordIndex < words.length) {
+      let currentText = $("#txtReason").val();
+      $("#txtReason").val(currentText + words[wordIndex]);
+      wordIndex++;
+    } else {
+      clearInterval(handleWriteText);
+    }
+  }
 
-    // Cộng thêm 1 từ cho mỗi lần gõ
-    var newText = words.slice(0, currentWords + 1).join(" ");
-    $("#txtReason").val(newText);
-}
-
-
-  // show popup
   $("#yes").click(function () {
     var audio = new Audio("sound/tick.mp3");
     audio.play();
     Swal.fire({
       title: textConfig.text7,
-      html: true,
       width: 900,
       padding: "3em",
-      html: "<input type='text' class='form-control' id='txtReason'  placeholder='Whyyy'>",
+      html: "<input type='text' class='form-control' id='txtReason' readonly placeholder='Whyyy'>",
       background: '#fff url("img/iput-bg.jpg")',
       backdrop: `
-                    rgba(0,0,123,0.4)
-                    url("img/giphy2.gif")
-                    left top
-                    no-repeat
-                  `,
+            rgba(0,0,123,0.4)
+            url("img/giphy2.gif")
+            left top
+            no-repeat
+        `,
       showCancelButton: false,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
       confirmButtonColor: "#fe8a71",
-      cancelButtonColor: "#f6cd61",
       confirmButtonText: textConfig.text8,
     }).then((result) => {
       if (result.value) {
@@ -131,27 +124,21 @@ function textGenerate() {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            try {
-              window.open(
-                "https://www.facebook.com/minh.thu.595613",
-                "_blank"
-              );
-            } catch (e) {
-              window.location.href =
-                "https://www.facebook.com/minh.thu.595613s";
-            }
+            window.location = "https://www.facebook.com/minh.thu.595613";
           },
         });
       }
     });
 
-    $("#txtReason").focus(function () {
-      var handleWriteText = setInterval(function () {
-        textGenerate();
-      }, 10);
-      $("#txtReason").blur(function () {
-        clearInterval(handleWriteText);
-      });
-    });
+    const text = textConfig.text9;
+    let i = 0;
+    let interval = setInterval(function () {
+      if (i < text.length) {
+        $("#txtReason").val($("#txtReason").val() + text.charAt(i));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 70);
   });
 });
