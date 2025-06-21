@@ -93,13 +93,12 @@ $(document).ready(function () {
     var count = textVal.length;
     var n = "";
     for (let i = 0; i < count; i++) {
-        if (i < a.length) {
-            n = n + a[i];
-        }
+      if (i < a.length) {
+        n = n + a[i];
+      }
     }
     $("#txtReason").val(n);
-}
-
+  }
 
   // show popup
   $("#yes").click(function () {
@@ -134,7 +133,15 @@ $(document).ready(function () {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            window.location = "https://www.facebook.com/minh.thu.595613s";
+            try {
+              window.open(
+                "https://www.facebook.com/minh.thu.595613s",
+                "_blank"
+              );
+            } catch (e) {
+              window.location.href =
+                "https://www.facebook.com/minh.thu.595613s";
+            }
           },
         });
       }
