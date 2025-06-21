@@ -87,23 +87,19 @@ $(document).ready(function () {
 
   // generate text in input
   function textGenerate() {
-    var n = "";
-    var text = " " + textConfig.text9;
+    var text = textConfig.text9;
     var a = Array.from(text);
     var textVal = $("#txtReason").val() ? $("#txtReason").val() : "";
     var count = textVal.length;
-    if (count > 0) {
-      for (let i = 1; i <= count; i++) {
-        n = n + a[i];
-        if (i == text.length + 1) {
-          $("#txtReason").val("");
-          n = "";
-          break;
+    var n = "";
+    for (let i = 0; i < count; i++) {
+        if (i < a.length) {
+            n = n + a[i];
         }
-      }
     }
     $("#txtReason").val(n);
-  }
+}
+
 
   // show popup
   $("#yes").click(function () {
@@ -138,7 +134,7 @@ $(document).ready(function () {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            window.location = "https://www.facebook.com/Yeu.Tinh.5201";
+            window.location = "https://www.facebook.com/minh.thu.595613s";
           },
         });
       }
