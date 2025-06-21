@@ -135,12 +135,12 @@ $(document).ready(function () {
           onClose: () => {
             try {
               window.open(
-                "https://www.facebook.com/minh.thu.595613s",
+                "https://www.facebook.com/minh.thu.595613",
                 "_blank"
               );
             } catch (e) {
               window.location.href =
-                "https://www.facebook.com/minh.thu.595613s";
+                "https://www.facebook.com/minh.thu.595613";
             }
           },
         });
