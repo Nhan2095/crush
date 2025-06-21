@@ -86,19 +86,17 @@ $(document).ready(function () {
   });
 
   // generate text in input
-  function textGenerate() {
-    var text = textConfig.text9;
-    var a = Array.from(text);
-    var textVal = $("#txtReason").val() ? $("#txtReason").val() : "";
-    var count = textVal.length;
-    var n = "";
-    for (let i = 0; i < count; i++) {
-      if (i < a.length) {
-        n = n + a[i];
-      }
-    }
-    $("#txtReason").val(n);
-  }
+function textGenerate() {
+    var text = textConfig.text9;  // nguyên câu "Tớ thích cậu thì đâu cần lý do:>>"
+    var words = text.split(" ");  // tách thành mảng các từ
+    var textVal = $("#txtReason").val() || "";
+    var currentWords = textVal.split(" ").filter(word => word !== "").length;
+
+    // Cộng thêm 1 từ cho mỗi lần gõ
+    var newText = words.slice(0, currentWords + 1).join(" ");
+    $("#txtReason").val(newText);
+}
+
 
   // show popup
   $("#yes").click(function () {
@@ -140,7 +138,7 @@ $(document).ready(function () {
               );
             } catch (e) {
               window.location.href =
-                "https://www.facebook.com/minh.thu.595613";
+                "https://www.facebook.com/minh.thu.595613s";
             }
           },
         });
