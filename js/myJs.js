@@ -7,7 +7,7 @@ const textConfig = {
   text6: "Thích ơi là thích <3",
   text7: "Lí do cậu thích tớ :vvvv",
   text8: "Gửi cho tớ <3",
-  text9: "Huy thích Thư thì đâu cần lý do:>>>",
+  text9: "Huy thích Lành thì đâu cần lý do:>>>",
   text10: "Tớ biết mà ^^ Yêu cậu's 3000",
   text11:
     "Tối nay tớ qua đón cậu đi chơi nhaa :v Còn giờ thì chờ gì nữa mà ko inbox cho tớ đi nàooo",
@@ -124,7 +124,7 @@ $(document).ready(function () {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            window.location = "https://www.facebook.com/minh.thu.595613";
+            window.location = "https://www.facebook.com/qn.lanh.2";
           },
         });
       }
